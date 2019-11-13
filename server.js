@@ -3,7 +3,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 
 const authRouter = require('./auth/auth-router');
-//const middleware = require('./auth/auth-middleware')
+const userRouter = require('./users/users-router')
 
 const server = express();
 
@@ -15,15 +15,7 @@ server.use(cors());
 
 server.use('/api/auth', authRouter);
 
-// server.get('/api/users', middleware.sessionAuth, (req, res) => {
-//     Users.find()
-//         .then(users => {
-//             res.json(users);
-//         })
-//         .catch(error => {
-//             res.send(error);
-//         });
-// });
+server.use('/api/user', userRouter);
 
 server.get('/', (req, res) => {
     res.send('o boy!!!')
